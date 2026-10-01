@@ -17,7 +17,7 @@
 │   ├── build-theme.mjs        # theme.css 생성 + 대비율 검증
 │   ├── theme.css              # 생성물(HSL 변수)
 │   ├── tailwind.preset.ts     # Tailwind v3 프리셋(토큰 매핑)
-│   └── brand/                 # 로고 플레이스홀더 (교체 대상)
+│   └── brand/                 # Vanilla 아이콘·마크·배너·패턴 SVG (교체 대상)
 ├── public/favicon.svg         # 파비콘 (교체 대상)
 ├── src/
 │   ├── main.tsx               # 진입점 (StrictMode + ErrorBoundary + App)
@@ -42,10 +42,11 @@
 │   │   │   ├── TabPlaceholder.tsx     # 미등록 탭 타입 폴백
 │   │   │   └── TrustWorkspaceDialog.tsx # 폴더 신뢰 확인
 │   │   ├── language/LanguageSelectDialog.tsx # 첫 실행 언어 선택
-│   │   ├── ui/                        # shadcn/ui 프리미티브 (직접 수정 금지, CLI로 추가)
+│   │   ├── ui/                        # shadcn/ui 프리미티브 + Vanilla 컴포넌트(Badge·Card·Switch·Progress·Tabs·Table·Textarea)
 │   │   └── ErrorBoundary.tsx
 │   ├── pages/
 │   │   ├── Workspace.tsx              # Provider 조립 + ActivityBar 동작 + 시작 탭
+│   │   ├── Design/                    # 디자인 둘러보기(#/design): 브랜드·팔레트·타이포·컴포넌트·대시보드·인트로
 │   │   └── Settings/                  # 전체 화면 설정 라우트
 │   │       ├── SettingsLayout.tsx     # 좌측 네비 + Outlet (항목 추가 지점)
 │   │       ├── SettingsGeneral.tsx    # 테마·언어

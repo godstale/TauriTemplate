@@ -1,6 +1,6 @@
-<p align="center"><img src="./design/brand/app-banner.svg" alt="WorkspaceTemplate — folder-based Tauri desktop workspace shell" width="100%" /></p>
+<p align="center"><img src="./design/brand/app-banner.svg" alt="VanillaTemplate — folder-based Tauri desktop workspace shell" width="100%" /></p>
 
-# WorkspaceTemplate
+# VanillaTemplate
 
 폴더 기반 데스크탑 앱을 **빠르고 손쉽게 시작**하기 위한 Tauri 2 + React 19 +
 TypeScript 스타터 템플릿입니다. 특정 프로젝트의 도메인 로직은 포함하지 않고,

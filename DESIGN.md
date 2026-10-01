@@ -1,149 +1,146 @@
-# DESIGN.md — "Midnight Rampart" 디자인 시스템
+# DESIGN.md — "Vanilla" 디자인 시스템
 
 > 이 템플릿의 라이트/다크 테마, 색상 토큰, 타이포그래피, 컴포넌트 패턴을 정의한
 > 문서입니다. 특정 프로젝트에 종속되지 않으며, 그대로 새 앱에 사용할 수 있습니다.
 > 브랜드(로고) 교체 방법은 `BRANDING.md`를 참고하세요.
+> 시각 미리보기: 앱 실행 후 **활동 막대 하단 팔레트 아이콘 / 보기 ▸ 디자인 둘러보기**(`#/design`),
+> 그리고 Claude 디자인 아티팩트 "Vanilla Design System".
 
 ---
 
 ## 1. 컨셉
 
-**Midnight Rampart(한밤의 성벽)** — 작업대형 데스크탑 앱을 위한 디자인 시스템입니다.
-브랜드(로고)는 투박하고 기본적으로, UI는 조용한 바탕 위에 수치와 상태만 또렷하게
-보이도록 합니다. 라이트는 남색 기운의 밝은 중립, 다크는 **눈부심을 줄인 차콜 중립**입니다.
+**Vanilla** — AI Agent 중심의 순수한(pure) 앱을 위한 디자인 시스템입니다. 앞으로 만드는 프로젝트는
+이름 앞에 "바닐라(Vanilla)"를 붙이고, 이 시스템으로 색·아이콘·컴포넌트·이미지를 통일합니다.
 
-- **투박한 브랜드, 정직한 계기판.** 로고는 단순한 기하 도형으로, 장식·그라디언트·광택을 쓰지 않습니다.
-- **바탕은 조용하게, 신호는 선명하게.** 표면은 채도 낮은 남색 중립(Neutral) 계열이고, 색은 _의미가 있을 때만_ 씁니다.
-- **색 = 의미.** 파랑은 액션, 인디고는 보조 정보, 마젠타는 진행 중 상태, 앰버는 사람의 확인이 필요한 순간입니다. 같은 색을 다른 의미로 쓰지 않습니다.
-- **다크는 편안하게.** 어두운 환경에서 오래 봐도 눈이 덜 피로하도록 다크 테마는 순수 검정·채도 높은 남색 대신 약간 푸른 기운의 차콜(`#18191C`~`#2C2E34`)을 쓰고, 본문은 순백 대신 `#D9DBE1`(대비 11.8:1), 강조색은 채도를 낮춘 파스텔 톤으로 맞췄습니다.
-- **시인성 우선.** 모든 텍스트 토큰은 각 테마의 `card`·`muted` 표면 위에서 **WCAG AA(4.5:1) 이상**입니다(`node design/build-theme.mjs`가 매번 검증).
-- **로컬 퍼스트.** 폰트는 CDN이 아니라 `@fontsource` 패키지로 번들합니다. 오프라인에서도 동일하게 보입니다.
+- **무채색 바탕 위의 흰 카드.** 표면은 R=G=B 무채색입니다. 라이트는 회색(`#F4F4F4`) 바탕에 흰 카드, 다크는 거의 검정(`#0A0A0A`) 바탕에 한 단계 밝은 카드.
+- **강조색은 테마당 하나.** 라이트 = **녹색**, 다크 = **주황**. 강조색은 주요 액션·포커스·활성 네비·진행률에만 씁니다.
+- **RGB 계열은 의미가 있을 때만.** 파랑(정보), 빨강(오류), 황색(확인 필요), 녹색(성공). 장식용으로 쓰지 않습니다.
+- **알약과 우물.** 버튼은 완전한 알약형, 카드는 20px 라운드, 입력 12px. 깊이는 표면 단계와 1px 테두리로 만들고 그림자는 라이트의 떠 있는 카드에만 아주 얇게.
+- **일러스트는 손그림 바닐라 난초.** 아이콘·배너·패턴은 `design/brand/`의 한 원본 계열에서 나옵니다(분홍 바탕 `#D9B9AE`, 크림 꽃잎 `#FBE7A1`, 꼬투리 갈색 `#5A1F1A`, 중심 `#F2A33A`).
+- **시인성 우선.** 모든 텍스트 토큰은 `card`·`muted` 표면 위에서 **WCAG AA(4.5:1) 이상**입니다(`node design/build-theme.mjs`가 매번 검증).
+- **로컬 퍼스트.** 폰트는 CDN이 아니라 `@fontsource` 패키지로 번들합니다.
 
 ## 2. 리소스 맵
 
-| 경로                                     | 역할                                                                                       |
-| :--------------------------------------- | :----------------------------------------------------------------------------------------- |
-| `design/tokens.json`                     | **단일 진실 공급원.** 4개 색상 스케일(11단계), 다크/라이트 시맨틱 토큰(hex), 폰트, 라운드. |
-| `design/build-theme.mjs`                 | `tokens.json` → `design/theme.css` 생성 + 대비율 리포트(AA 미달 시 exit 1). 의존성 없음.   |
-| `design/theme.css`                       | 생성물. shadcn/ui 규약의 HSL CSS 변수(`:root` = 다크, `.light` = 라이트).                  |
-| `design/tailwind.preset.ts`              | Tailwind v3 프리셋. 색상 유틸리티(`bg-success`, `text-info`…), 폰트, 라운드.               |
-| `design/brand/`                          | 로고 플레이스홀더 SVG 패밀리. 교체 방법은 `BRANDING.md` 참고.                              |
-| `public/favicon.svg`                     | 파비콘.                                                                                    |
-| `src/components/brand/AppMark.tsx`       | 앱 내 로고 컴포넌트(`currentColor`, `compact` 옵션).                                       |
-| `src/index.css`                          | 앱 적용본. `design/theme.css`의 변수 블록 + 폰트 import + base 스타일.                     |
-| `src/lib/context/ThemeContext.tsx`       | `light` / `dark` / `system` 전환. `<html>`에 `.light` 또는 `.dark` 클래스를 토글.          |
-| `src/components/workspace/EditorTab.tsx` | CodeMirror 다크/라이트 테마(팔레트 hex).                                                   |
+| 경로                                     | 역할                                                                                                     |
+| :--------------------------------------- | :------------------------------------------------------------------------------------------------------- |
+| `design/tokens.json`                     | **단일 진실 공급원.** 스케일(neutral/green/orange/blue/red), 다크/라이트 시맨틱 토큰(hex), 폰트, 라운드. |
+| `design/build-theme.mjs`                 | `tokens.json` → `design/theme.css` 생성 + 대비율 리포트(AA 미달 시 exit 1). 의존성 없음.                 |
+| `design/theme.css`                       | 생성물. shadcn/ui 규약의 HSL CSS 변수(`:root, .dark` = 다크, `.light` = 라이트).                         |
+| `design/tailwind.preset.ts`              | Tailwind v3 프리셋. 색상 유틸리티, 폰트, 라운드(`rounded-card` = 20px).                                  |
+| `design/brand/`                          | 앱 아이콘(rose/dark/light), 선화 마크, 배너, 패턴 SVG. 교체 방법은 `BRANDING.md`.                        |
+| `public/favicon.svg`                     | 파비콘.                                                                                                  |
+| `src-tauri/icons/*`                      | `pnpm tauri icon design/brand/app-icon.svg`로 생성한 전 플랫폼 아이콘(ico/icns/png/Android/iOS).         |
+| `src/components/brand/AppMark.tsx`       | 앱 내 선화 로고(`currentColor`, `compact` 옵션).                                                         |
+| `src/components/ui/*`                    | Button·Input·Textarea·Badge·Card/Well·Switch·Progress·SegmentedTabs·Table 등 컴포넌트.                   |
+| `src/pages/Design/*`                     | 디자인 둘러보기(`#/design`): 브랜드·팔레트·타이포·컴포넌트·대시보드·인트로.                              |
+| `src/index.css`                          | 앱 적용본. `design/theme.css`의 변수 블록 + 폰트 import + base 스타일.                                   |
+| `src/lib/context/ThemeContext.tsx`       | `light` / `dark` / `system` 전환. `<html>`에 `.light` 또는 `.dark` 클래스를 토글.                        |
+| `src/components/workspace/EditorTab.tsx` | CodeMirror 다크/라이트 테마(팔레트 hex).                                                                 |
 
 ## 3. 색상
 
-### 3.1 기본 스케일
+### 3.1 시맨틱 토큰
 
-| 스케일    | 기준(500) | 용도                          |
-| :-------- | :-------- | :---------------------------- |
-| Primary   | `#0476FF` | 액션, 포커스, 선택 상태, 링크 |
-| Secondary | `#596FD5` | 보조 정보(`info` 토큰의 원천) |
-| Tertiary  | `#A958AF` | 진행 중 상태                  |
-| Neutral   | `#6D759E` | 표면, 테두리, 텍스트          |
+`--토큰` 이름은 shadcn/ui 규약을 따르고, 템플릿 전용 토큰(★)을 추가했습니다.
 
-> `#0476FF`를 그대로 라이트 버튼에 쓰면 흰 글씨 대비가 4.3:1로 AA에 못 미칩니다.
-> 그래서 라이트 테마의 `primary`는 한 단계 진한 `#0062DB`(5.57:1), 다크 테마는 밝은
-> `#5B9BFF` 위에 남색 글씨(6.70:1)를 씁니다.
+| 토큰                   | Dark                                          | Light                                        | 용도                                             |
+| :--------------------- | :-------------------------------------------- | :------------------------------------------- | :----------------------------------------------- |
+| `background`           | `#0A0A0A`                                     | `#F4F4F4`                                    | 앱 바탕                                          |
+| `card`                 | `#151515`                                     | `#FFFFFF`                                    | 패널, 카드                                       |
+| `popover`              | `#1C1C1C`                                     | `#FFFFFF`                                    | 메뉴, 툴팁, 다이얼로그                           |
+| `muted`                | `#1A1A1A`                                     | `#EFEFEF`                                    | 입력 배경, 우물형 표면                           |
+| `secondary` / `accent` | `#262626`                                     | `#EBEBEB` / `#E6E6E6`                        | 중립 버튼 / hover 표면                           |
+| `border` / `input`     | `#2A2A2A` / `#333333`                         | `#E0E0E0` / `#D6D6D6`                        | 테두리                                           |
+| `foreground`           | `#EDEDED`                                     | `#111111`                                    | 본문 텍스트                                      |
+| `muted-foreground`     | `#A3A3A3`                                     | `#595959`                                    | 보조 텍스트, 라벨                                |
+| ★`subtle-foreground`   | `#8F8F8F`                                     | `#6B6B6B`                                    | 메타 정보. Tailwind: `text-subtle`               |
+| `primary` / `ring`     | `#F59A4A`                                     | `#187444`                                    | **강조색** — 주황(다크) / 녹색(라이트)           |
+| ★`info`                | `#7FA6FF`                                     | `#2459C9`                                    | 정보                                             |
+| ★`success`             | `#5BC98A`                                     | `#0F7A3E`                                    | 연결됨, 완료, 추가(+)                            |
+| ★`warning`             | `#E8B04A`                                     | `#9A5B00`                                    | 사람의 확인이 필요한 순간                        |
+| `destructive`          | `#F0766C`                                     | `#C4372C`                                    | 오류, 삭제(−)                                    |
+| ★`tertiary`            | `#CFCFCF`                                     | `#3D3D3D`                                    | 진행 중 상태(중립 잉크)                          |
+| ★`brand`               | `#F4EEE3`                                     | `#5A1F1A`                                    | **선화 로고 전용**. 텍스트·상태 표시에 쓰지 않음 |
+| ★`code`                | `#0F0F0F`                                     | `#151515`                                    | 코드 블록 배경 — 두 테마 모두 어둡게 유지        |
+| `chart-1…5`            | primary · info · success · destructive · gray | primary · info · orange · destructive · gray | 차트 시리즈                                      |
 
-### 3.2 시맨틱 토큰
+모든 색 토큰에는 `-foreground` 짝이 있어 채운 배경 위 글자색으로 씁니다(`bg-warning text-warning-foreground`).
 
-`--토큰` 이름은 shadcn/ui 규약을 그대로 따르고, 템플릿 전용 토큰(★)을 추가했습니다.
-대비율은 `card` 표면 기준입니다.
+### 3.2 사용 규칙
 
-| 토큰                   | Dark                                          | Light            | 용도                                                                |
-| :--------------------- | :-------------------------------------------- | :--------------- | :------------------------------------------------------------------ |
-| `background`           | `#18191C`                                     | `#F4F6FB`        | 앱 바탕                                                             |
-| `card`                 | `#1F2024`                                     | `#FFFFFF`        | 패널, 카드                                                          |
-| `popover`              | `#26282D`                                     | `#FFFFFF`        | 메뉴, 툴팁, 다이얼로그                                              |
-| `muted`                | `#232429`                                     | `#EEF1F8`        | 보조 표면, 입력 배경                                                |
-| `secondary` / `accent` | `#2C2E34`                                     | `#E3E7F2`        | 중립 버튼 / hover 표면                                              |
-| `border` / `input`     | `#34363D`                                     | `#D3D8E8`        | 테두리                                                              |
-| `foreground`           | `#D9DBE1` (11.8)                              | `#0E1330` (18.2) | 본문 텍스트                                                         |
-| `muted-foreground`     | `#9DA1AC` (6.30)                              | `#4A5173` (7.73) | 보조 텍스트, 라벨                                                   |
-| ★`subtle-foreground`   | `#8C909B` (5.10)                              | `#5F6689` (5.60) | 메타 정보(시간, 경로). Tailwind: `text-subtle`                      |
-| `primary`              | `#6F9EF0`                                     | `#0062DB`        | 주요 버튼, 선택, 링크                                               |
-| `ring`                 | `#7FA8F2`                                     | `#0062DB`        | 포커스 링                                                           |
-| ★`info`                | `#9FA8D6`                                     | `#4357BE`        | 보조 데이터, 정보 배지                                              |
-| ★`tertiary`            | `#C99BCC`                                     | `#8E4394`        | 진행 중 상태                                                        |
-| ★`success`             | `#6CC49A`                                     | `#0B7A4B`        | 연결됨, 완료, 추가(+)                                               |
-| ★`warning`             | `#E0B26A`                                     | `#8F5600`        | 확인 요청, 경고, 임계치 근접                                        |
-| `destructive`          | `#E8837A`                                     | `#C4302B`        | 오류, 거부, 삭제(−)                                                 |
-| ★`brand`               | `#D4A262`                                     | `#9A6630`        | **로고 전용**. 텍스트·상태 표시에 쓰지 않음. Tailwind: `text-brand` |
-| ★`code`                | `#141518`                                     | `#111733`        | 코드 블록 배경 — **두 테마 모두 어둡게 유지**                       |
-| `chart-1…5`            | primary · tertiary · success · warning · info | 동일 순서        | 차트 시리즈(차트 라이브러리 추가 시)                                |
-
-모든 색 토큰에는 `-foreground` 짝이 있어 채운 배경 위 글자색으로 씁니다
-(`bg-warning text-warning-foreground`).
-
-### 3.3 사용 규칙
-
-- **원시 팔레트 클래스 금지.** `text-emerald-400`, `bg-zinc-800` 같은 Tailwind 기본 팔레트 대신 시맨틱 토큰만 씁니다. 검사:
-  ```bash
-  grep -rnE "\b(bg|text|border)-(zinc|slate|gray|red|green|emerald|amber|yellow|blue|sky|indigo|violet|purple|pink|rose|orange|teal|cyan)-[0-9]+" src --include=*.tsx
-  ```
+- **원시 팔레트 클래스 금지.** `bg-zinc-800` 같은 Tailwind 기본 팔레트 대신 시맨틱 토큰만 씁니다.
   (예외: `CodeViewer`의 구문 강조 색, 타이틀바 닫기 버튼의 OS 관례 `hover:bg-red-600`)
-- **은은한 강조는 투명도로.** 배경 `bg-{token}/10`, 테두리 `border-{token}/30`, 글자 `text-{token}`. 별도의 "soft" 토큰을 만들지 않습니다.
-- **확인이 필요한 순간은 항상 warning**, **진행 중 상태는 항상 tertiary**, **보조 정보는 항상 info.** 색만으로 의미를 구분할 수 있게 합니다.
+- **은은한 강조는 투명도로.** 배경 `bg-{token}/10`, 테두리 `border-{token}/30`, 글자 `text-{token}`.
+- **한 화면에 강조색 영역은 하나.** 가장 중요한 CTA는 `Button variant="ink"`(라이트=검정, 다크=흰색 알약)로 레퍼런스의 절제된 룩을 유지해도 됩니다.
+- **의미 고정.** 확인 필요 = warning, 진행 중 = tertiary/primary, 보조 정보 = info.
 
 ## 4. 타이포그래피
 
-| 역할           | 폰트                                                                | 크기 / 굵기                                    |
-| :------------- | :------------------------------------------------------------------ | :--------------------------------------------- |
-| UI·본문(라틴)  | **Geist Variable** (`@fontsource-variable/geist`)                   | 본문 14px / 1.6, UI 12–13px                    |
-| UI·본문(한글)  | **IBM Plex Sans KR** 400–700 (`@fontsource/ibm-plex-sans-kr`)       | Geist에 한글 글리프가 없어 폴백으로 자동 적용  |
-| 라벨·코드·수치 | **JetBrains Mono Variable** (`@fontsource-variable/jetbrains-mono`) | 11–13px, 섹션 라벨은 대문자 + `tracking-wider` |
-| 헤드라인       | Geist 700                                                           | 26–40px, `tracking-tight`                      |
+| 역할           | 폰트                                                                | 크기 / 굵기                                   |
+| :------------- | :------------------------------------------------------------------ | :-------------------------------------------- |
+| UI·본문(라틴)  | **Geist Variable** (`@fontsource-variable/geist`)                   | 본문 14px / 1.6, UI 12–13px                   |
+| UI·본문(한글)  | **IBM Plex Sans KR** 400–700 (`@fontsource/ibm-plex-sans-kr`)       | Geist에 한글 글리프가 없어 폴백으로 자동 적용 |
+| 라벨·코드·수치 | **JetBrains Mono Variable** (`@fontsource-variable/jetbrains-mono`) | 11–13px, 라벨은 대문자 + `tracking-wider`     |
 
-- Tailwind: `font-sans`(기본, `body`에 적용), `font-mono`(`code`/`pre`/`kbd`에 자동 적용).
-- 수치·경로 같은 고정폭 정보는 `font-mono` 또는 `tabular-nums`로 자릿수를 고정합니다.
+| 스타일  | 크기 / 행간 / 굵기 / 자간        |
+| :------ | :------------------------------- |
+| Display | 72 / 1.02 / 600 / −3.5%          |
+| H1      | 48 / 1.08 / 600 / −3%            |
+| H2      | 32 / 1.15 / 600 / −2.5%          |
+| H3      | 22 / 1.25 / 600 / −1.5%          |
+| H4      | 16 / 1.35 / 600                  |
+| Lead    | 18 / 1.55 / 400 / muted          |
+| Body    | 14 / 1.6 / 400                   |
+| Small   | 12 / 1.5 / muted                 |
+| Label   | 11 / 500 / +8% / 대문자 / subtle |
 
 ## 5. 형태와 컴포넌트 패턴
 
-- **라운드:** `--radius: 0.5rem` → `rounded-lg`(8px) 버튼·입력, `rounded-xl`(12px) 카드, `rounded-full` 상태 점·알약 배지.
-- **간격:** 4px 그리드. 패널 내부 12–16px, 카드 내부 12–20px, 카드 사이 12–16px.
-- **깊이:** 그림자 대신 **표면 단계**(background → card → popover/muted → accent)와 1px `border`로 층을 구분합니다.
-- **터치/클릭 영역:** 아이콘 버튼 최소 32px(주요 액션 36–40px), 아이콘만 있는 버튼엔 `aria-label`.
+- **라운드:** `--radius: 0.75rem`. 버튼·배지·세그먼트 `rounded-full`, 입력 `rounded-xl`(12px), 카드·우물 `rounded-card`(20px).
+- **간격:** 4px 그리드. 카드 내부 20–24px, 카드 사이 12–16px.
+- **깊이:** 표면 단계(background → card → muted/popover)와 1px `border`. `Card`는 `shadow-sm` 한 단계만.
+- **터치/클릭 영역:** 아이콘 버튼 최소 32px(주요 액션 40px), 아이콘만 있는 버튼엔 `aria-label`.
 
-| 패턴                   | 구성                                                                                         |
-| :--------------------- | :------------------------------------------------------------------------------------------- |
-| 상태 알약              | `rounded-full bg-{token}/10 text-{token}` + 7px 점 `bg-{token}`                              |
-| 정보 카드              | `bg-card border` + 이름 배지 `bg-info/10 text-info font-mono` + 설명 `text-muted-foreground` |
-| 활성 네비(ActivityBar) | `bg-primary/10 text-primary` 타일                                                            |
+| 패턴        | 구성                                                                           |
+| :---------- | :----------------------------------------------------------------------------- |
+| 상태 배지   | `Badge variant="success" dot` = `rounded-full bg-{token}/10 text-{token}` + 점 |
+| 카드 / 우물 | `Card`(흰 표면 + 테두리) 위에 `Well`(muted 표면)로 층을 나눔                   |
+| 활성 네비   | `bg-primary/10 text-primary` 항목                                              |
+| 플로팅 네비 | 알약형 컨테이너(`rounded-full border bg-card shadow-sm`) 안에 링크들           |
+| 세그먼트    | `SegmentedTabs`: muted 알약 트랙 + 선택 항목은 `bg-card`                       |
 
 ## 6. 서드파티 컴포넌트 테마
 
-- **CodeMirror:** `EditorTab.tsx`의 다크/라이트 테마와 하이라이트 스타일. 구문 색은 키워드·문자열·숫자·함수 계열로 고정합니다.
-- **코드 블록(`CodeViewer`):** `bg-code text-code-foreground`로 두 테마 모두 어두운 블록을 유지하고, 그 위의 구문 색은 고정입니다.
-- 차트·다이어그램 라이브러리를 추가하면 CSS 변수(`hsl(var(--chart-1))`)를 그대로 넘겨 테마 전환 시 리렌더 없이 반영되게 합니다.
+- **CodeMirror:** `EditorTab.tsx`의 다크/라이트 테마. 다크는 주황 계열 강조, 라이트는 녹색 계열 강조.
+- **코드 블록(`CodeViewer`):** `bg-code text-code-foreground`로 두 테마 모두 어두운 블록을 유지합니다.
+- 차트 라이브러리를 추가하면 `hsl(var(--chart-1))`을 그대로 넘깁니다.
 
 ## 7. 테마 전환 방식
 
-- `:root`가 **다크 기본값**, `<html class="light">`가 라이트입니다(`index.html`은 라이트로 시작해 FOUC 방지).
-- `ThemeContext`가 `light | dark | system`을 `localStorage('wt-theme')`에 저장하고 `<html>`에 `.light` / `.dark`를 토글합니다. Tailwind `darkMode: ['class']`이므로 `dark:` 변형도 동작합니다.
-- 컴포넌트는 가능하면 `dark:` 변형 없이 **토큰만으로** 양쪽 테마를 처리합니다.
+- `:root`(= `.dark`)가 **다크 기본값**, `<html class="light">`가 라이트입니다(`index.html`은 라이트로 시작해 FOUC 방지).
+- `.dark` / `.light` 클래스를 중첩 요소에 달면 그 영역만 해당 테마로 보입니다(팔레트 페이지가 이 방식).
+- `ThemeContext`가 `light | dark | system`을 `localStorage('wt-theme')`에 저장하고 `<html>`에 클래스를 토글합니다.
+- 컴포넌트는 가능하면 `dark:` 변형 없이 **토큰만으로** 양쪽 테마를 처리합니다(입력 필드의 다크 전용 배경 정도만 예외).
 
 ## 8. 색을 바꾸고 싶을 때
 
 1. `design/tokens.json`의 hex를 수정합니다.
 2. `node design/build-theme.mjs` — `design/theme.css`가 재생성되고, 대비율이 AA 미만인 쌍이 있으면 ✗ 표시와 함께 실패합니다.
-3. 생성된 `:root` / `.light` 블록을 `src/index.css`에 반영합니다.
+3. 생성된 `:root, .dark` / `.light` 블록을 `src/index.css`에 반영합니다.
 4. hex를 직접 쓰는 곳(`EditorTab.tsx`)도 함께 맞춥니다.
 
-## 9. 브랜드(플레이스홀더)
+## 9. 브랜드 파일
 
-현재 로고는 "겹쳐진 작업 화면"을 뜻하는 단순한 둥근 타일입니다. 실제 프로젝트에서는
-반드시 교체하세요. 전체 절차는 `BRANDING.md`를 참고하세요.
-
-| 파일                              | 용도                                                     |
-| :-------------------------------- | :------------------------------------------------------- |
-| `design/brand/app-mark.svg`       | 단색 마크(`currentColor`)                                |
-| `design/brand/app-mark-small.svg` | 단색 간소화 마크(≤ 24px)                                 |
-| `design/brand/app-icon.svg`       | 앱 아이콘 원본(어두운 타일). `pnpm tauri icon`의 입력    |
-| `design/brand/app-icon-light.svg` | 라이트 배경용 앱 아이콘                                  |
-| `design/brand/app-banner.svg`     | README·소개용 배너(1280 × 320)                           |
-| `public/favicon.svg`              | 브라우저 탭·웹 프리뷰 파비콘                             |
-| `src-tauri/icons/*`               | 데스크탑 앱 아이콘(ico/icns/png), 앱 아이콘 SVG에서 생성 |
+| 파일                              | 용도                                                |
+| :-------------------------------- | :-------------------------------------------------- |
+| `design/brand/app-icon.svg`       | 앱 아이콘 원본(로즈 타일). `pnpm tauri icon`의 입력 |
+| `design/brand/app-icon-dark.svg`  | 다크 변형(검정 타일, 크림 선화 + 주황 중심)         |
+| `design/brand/app-icon-light.svg` | 라이트 변형(흰 타일, 잉크 선화 + 녹색 중심)         |
+| `design/brand/app-mark.svg`       | 선화 마크(`currentColor`, 64×64)                    |
+| `design/brand/app-mark-small.svg` | 간소화 선화 마크(≤ 24px, 32×32)                     |
+| `design/brand/app-banner.svg`     | README·소개용 배너(1280 × 320)                      |
+| `design/brand/app-pattern.svg`    | 빈 화면·스플래시용 패턴(512 × 512)                  |
+| `public/favicon.svg`              | 브라우저 탭·웹 프리뷰 파비콘                        |
+| `src-tauri/icons/*`               | 데스크탑·모바일 앱 아이콘(앱 아이콘 SVG에서 생성)   |

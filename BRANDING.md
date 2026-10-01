@@ -12,7 +12,7 @@
 | 2   | 로고 컴포넌트 교체                | `src/components/brand/AppMark.tsx`                                                                         |
 | 3   | 로고 SVG 교체                     | `design/brand/app-mark.svg`, `app-mark-small.svg`                                                          |
 | 4   | 파비콘 교체                       | `public/favicon.svg`                                                                                       |
-| 5   | 데스크탑 아이콘 재생성            | `pnpm tauri icon design/brand/app-icon.svg`                                                                |
+| 5   | 데스크탑·모바일 아이콘 재생성     | `pnpm tauri icon design/brand/app-icon.svg` (ico/icns/png/Android/iOS 한 번에 생성)                        |
 | 6   | 제품명·식별자 변경                | `src-tauri/tauri.conf.json` (`productName`, `identifier`, 창 `title`)                                      |
 | 7   | 패키지명 변경                     | `package.json` (`name`)                                                                                    |
 | 8   | HTML 타이틀 변경                  | `index.html` (`<title>`)                                                                                   |
@@ -25,8 +25,9 @@
 - `app-mark.svg`: 64×64 viewBox, `currentColor` 단색. 앱 내에서는
   `<AppMark className="text-brand" />`처럼 `text-brand`로 칠합니다.
 - `app-mark-small.svg`: 32×32 viewBox, 24px 이하에서 사용합니다.
-- `app-icon.svg`: 512×512, 어두운 타일 + 마크. `pnpm tauri icon`의 입력입니다.
-- `app-icon-light.svg`: 밝은 배경용 변형입니다.
+- `app-icon.svg`: 512×512, 로즈 타일 + 바닐라 난초 + 꼬투리. `pnpm tauri icon`의 입력입니다.
+- `app-icon-dark.svg` / `app-icon-light.svg`: 다크·라이트 테마용 변형입니다.
+- `app-banner.svg`(1280×320), `app-pattern.svg`(512×512): 배너·패턴 이미지입니다.
 - 최소 크기는 16px이며, 작은 크기에서는 간소화 마크를 씁니다.
 
 ## 3. 사용 규칙
