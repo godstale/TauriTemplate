@@ -5,11 +5,23 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 import iconMaster from '../../../design/brand/app-icon.png';
 import iconDark from '../../../design/brand/app-icon-dark.png';
 import iconLight from '../../../design/brand/app-icon-light.png';
-import banner from '../../../design/brand/app-banner.svg';
+import banner from '../../../design/brand/app-banner.jpg';
 import pattern from '../../../design/brand/app-pattern.svg';
 import { PageHeader, Section } from './DesignSection';
 
 const SIZES = [256, 128, 64, 48, 32, 16];
+
+// Unsplash 라이선스 표기 요건: 작가·Unsplash 링크를 배너와 함께 노출한다.
+const BANNER_CREDIT_LINKS: Record<string, { href: string; label: string }> = {
+  '{author}': {
+    href: 'https://unsplash.com/@molnj?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+    label: 'Jocelyn Morales',
+  },
+  '{source}': {
+    href: 'https://unsplash.com/photos/GA6WtJ7DtSo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+    label: 'Unsplash',
+  },
+};
 
 export function BrandPage() {
   const { t } = useLanguage();
@@ -67,7 +79,29 @@ export function BrandPage() {
       </Section>
 
       <Section label={t('design.brand.banner')}>
-        <img src={banner} alt="" className="w-full rounded-card" />
+        <figure className="flex flex-col gap-2">
+          <img src={banner} alt="" className="w-full rounded-card" />
+          <figcaption className="text-right text-xs text-muted-foreground">
+            {t('design.brand.bannerCredit')
+              .split(/(\{author\}|\{source\})/)
+              .map((part, i) => {
+                const link = BANNER_CREDIT_LINKS[part];
+                return link ? (
+                  <a
+                    key={i}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-2 hover:text-foreground"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  part
+                );
+              })}
+          </figcaption>
+        </figure>
         <div className="grid grid-cols-2 gap-4">
           <img src={pattern} alt="" className="w-full rounded-card" />
           <Card className="flex items-center">

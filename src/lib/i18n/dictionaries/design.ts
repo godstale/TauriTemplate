@@ -25,6 +25,7 @@ export const designKo = {
   'design.brand.variantLight': '라이트 — 흰 타일',
   'design.brand.mark': '앱 내 로고',
   'design.brand.banner': '배너와 패턴',
+  'design.brand.bannerCredit': '사진: {source}의 {author}',
   'design.brand.patternHint':
     '빈 화면·스플래시 배경용 패턴입니다. 위에 글자를 직접 올리지 말고 흰 카드를 얹으세요.',
 
@@ -193,6 +194,7 @@ export const designEn: typeof designKo = {
   'design.brand.variantLight': 'Light — white tile',
   'design.brand.mark': 'In-app logo',
   'design.brand.banner': 'Banner & pattern',
+  'design.brand.bannerCredit': 'Photo by {author} on {source}',
   'design.brand.patternHint':
     'Pattern for empty states and splash backgrounds. Never put text directly on it — lay a white card on top.',
 

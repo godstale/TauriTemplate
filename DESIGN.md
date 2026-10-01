@@ -151,7 +151,7 @@
 | `design/brand/app-icon-dark.png`  | 다크 변형(그래파이트 타일)                          |
 | `design/brand/app-icon-light.png` | 라이트 변형(흰 타일 + 연회색 테두리)                |
 | `design/brand/vanilla-art.png`    | 투명 배경 로고 그림(`AppMark`, 512×512)             |
-| `design/brand/app-banner.svg`     | README·소개용 배너(1280 × 320)                      |
+| `design/brand/app-banner.jpg`     | README·소개용 배너(1280 × 320 @2x, 사진 저작자 표기) |
 | `design/brand/app-pattern.svg`    | 빈 화면·스플래시용 패턴(512 × 512, 이음매 없음)     |
 | `public/favicon.png`              | 브라우저 탭·웹 프리뷰 파비콘                        |
 | `src-tauri/icons/*`               | 데스크탑·모바일 앱 아이콘(앱 아이콘 PNG에서 생성)   |
