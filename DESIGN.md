@@ -29,10 +29,10 @@
 | `design/build-theme.mjs`                 | `tokens.json` → `design/theme.css` 생성 + 대비율 리포트(AA 미달 시 exit 1). 의존성 없음.                 |
 | `design/theme.css`                       | 생성물. shadcn/ui 규약의 HSL CSS 변수(`:root, .dark` = 다크, `.light` = 라이트).                         |
 | `design/tailwind.preset.ts`              | Tailwind v3 프리셋. 색상 유틸리티, 폰트, 라운드(`rounded-card` = 20px).                                  |
-| `design/brand/`                          | 앱 아이콘(rose/dark/light), 선화 마크, 배너, 패턴 SVG. 교체 방법은 `BRANDING.md`.                        |
-| `public/favicon.svg`                     | 파비콘.                                                                                                  |
-| `src-tauri/icons/*`                      | `pnpm tauri icon design/brand/app-icon.svg`로 생성한 전 플랫폼 아이콘(ico/icns/png/Android/iOS).         |
-| `src/components/brand/AppMark.tsx`       | 앱 내 선화 로고(`currentColor`, `compact` 옵션).                                                         |
+| `design/brand/`                          | 앱 아이콘(cream/dark/light PNG), 로고 그림, 배너·패턴 SVG. 교체 방법은 `BRANDING.md`.                    |
+| `public/favicon.png`                     | 파비콘.                                                                                                  |
+| `src-tauri/icons/*`                      | `pnpm tauri icon design/brand/app-icon.png`로 생성한 전 플랫폼 아이콘(ico/icns/png/Android/iOS).         |
+| `src/components/brand/AppMark.tsx`       | 앱 내 로고(`vanilla-art.png`, `compact` 옵션).                                                           |
 | `src/components/ui/*`                    | Button·Input·Textarea·Badge·Card/Well·Switch·Progress·SegmentedTabs·Table 등 컴포넌트.                   |
 | `src/pages/Design/*`                     | 디자인 둘러보기(`#/design`): 브랜드·팔레트·타이포·컴포넌트·대시보드·인트로.                              |
 | `src/index.css`                          | 앱 적용본. `design/theme.css`의 변수 블록 + 폰트 import + base 스타일.                                   |
@@ -147,12 +147,11 @@
 
 | 파일                              | 용도                                                |
 | :-------------------------------- | :-------------------------------------------------- |
-| `design/brand/app-icon.svg`       | 앱 아이콘 원본(로즈 타일). `pnpm tauri icon`의 입력 |
-| `design/brand/app-icon-dark.svg`  | 다크 변형(검정 타일, 크림 선화 + 주황 중심)         |
-| `design/brand/app-icon-light.svg` | 라이트 변형(흰 타일, 잉크 선화 + 녹색 중심)         |
-| `design/brand/app-mark.svg`       | 선화 마크(`currentColor`, 64×64)                    |
-| `design/brand/app-mark-small.svg` | 간소화 선화 마크(≤ 24px, 32×32)                     |
+| `design/brand/app-icon.png`       | 앱 아이콘 원본(크림 타일). `pnpm tauri icon`의 입력 |
+| `design/brand/app-icon-dark.png`  | 다크 변형(그래파이트 타일)                          |
+| `design/brand/app-icon-light.png` | 라이트 변형(흰 타일 + 연회색 테두리)                |
+| `design/brand/vanilla-art.png`    | 투명 배경 로고 그림(`AppMark`, 512×512)             |
 | `design/brand/app-banner.svg`     | README·소개용 배너(1280 × 320)                      |
-| `design/brand/app-pattern.svg`    | 빈 화면·스플래시용 패턴(512 × 512)                  |
-| `public/favicon.svg`              | 브라우저 탭·웹 프리뷰 파비콘                        |
-| `src-tauri/icons/*`               | 데스크탑·모바일 앱 아이콘(앱 아이콘 SVG에서 생성)   |
+| `design/brand/app-pattern.svg`    | 빈 화면·스플래시용 패턴(512 × 512, 이음매 없음)     |
+| `public/favicon.png`              | 브라우저 탭·웹 프리뷰 파비콘                        |
+| `src-tauri/icons/*`               | 데스크탑·모바일 앱 아이콘(앱 아이콘 PNG에서 생성)   |

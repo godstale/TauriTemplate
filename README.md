@@ -57,7 +57,7 @@ pnpm tauri build
 
 1. `BRANDING.md`의 교체 체크리스트 수행 (앱 이름·로고·아이콘·식별자).
 2. `src/lib/brand.ts`의 `APP_NAME` 변경.
-3. `pnpm tauri icon design/brand/app-icon.svg`로 데스크탑 아이콘 생성.
+3. `pnpm tauri icon design/brand/app-icon.png`로 데스크탑 아이콘 생성.
 4. 예제 도메인이 필요 없으면 `Docs/Extension-Guide.md` §8 순서대로 제거.
 5. 도메인 설계 문서를 새로 작성하고 `Docs/Architecture.md`는 템플릿 원본으로 유지.
 

@@ -18,7 +18,7 @@
 │   ├── theme.css              # 생성물(HSL 변수)
 │   ├── tailwind.preset.ts     # Tailwind v3 프리셋(토큰 매핑)
 │   └── brand/                 # Vanilla 아이콘·마크·배너·패턴 SVG (교체 대상)
-├── public/favicon.svg         # 파비콘 (교체 대상)
+├── public/favicon.png         # 파비콘 (교체 대상)
 ├── src/
 │   ├── main.tsx               # 진입점 (StrictMode + ErrorBoundary + App)
 │   ├── App.tsx                # HashRouter + Provider 조합 + 첫 실행 언어 팝업
