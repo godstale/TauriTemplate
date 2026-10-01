@@ -1,6 +1,7 @@
 import {
   Files,
   NotebookText,
+  Palette,
   Puzzle,
   Settings,
   type LucideIcon,
@@ -89,35 +90,52 @@ export function ActivityBar({ activeView, onSelect }: ActivityBarProps) {
           })}
         </div>
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            {!hasWorkspace ? (
-              <button
-                type="button"
-                disabled
-                aria-label={t('activityBar.settingsNeedFolder')}
-                className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground/30 cursor-not-allowed"
-              >
-                <Settings className="h-5 w-5" />
-              </button>
-            ) : (
+        <div className="flex flex-col items-center gap-1">
+          <Tooltip>
+            <TooltipTrigger asChild>
               <Link
-                to="/settings"
-                aria-label={t('activityBar.settings')}
+                to="/design"
+                aria-label={t('design.title')}
                 className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-sidebar-accent transition-colors cursor-pointer"
               >
-                <Settings className="h-5 w-5" />
+                <Palette className="h-5 w-5" />
               </Link>
-            )}
-          </TooltipTrigger>
-          <TooltipContent side="right">
-            <p>
-              {!hasWorkspace
-                ? t('activityBar.settingsAvailable')
-                : t('activityBar.settings')}
-            </p>
-          </TooltipContent>
-        </Tooltip>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              <p>{t('design.title')}</p>
+            </TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              {!hasWorkspace ? (
+                <button
+                  type="button"
+                  disabled
+                  aria-label={t('activityBar.settingsNeedFolder')}
+                  className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground/30 cursor-not-allowed"
+                >
+                  <Settings className="h-5 w-5" />
+                </button>
+              ) : (
+                <Link
+                  to="/settings"
+                  aria-label={t('activityBar.settings')}
+                  className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-sidebar-accent transition-colors cursor-pointer"
+                >
+                  <Settings className="h-5 w-5" />
+                </Link>
+              )}
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              <p>
+                {!hasWorkspace
+                  ? t('activityBar.settingsAvailable')
+                  : t('activityBar.settings')}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </aside>
     </TooltipProvider>
   );

@@ -1,6 +1,8 @@
 import type { Dict } from './ko';
+import { designEn } from './design';
 
 const en: Dict = {
+  ...designEn,
   'languageSelect.title': 'Select language',
   'languageSelect.description': 'Choose the language for the app.',
   'languageSelect.koLabel': '한국어',

@@ -5,92 +5,43 @@ export interface AppMarkProps {
   compact?: boolean;
 }
 
-// Placeholder brand mark: three stacked workspace panes in a rounded tile.
-// Replace this file (and design/brand/*) with your own logo — see BRANDING.md.
+// [rotation°, length factor] for the five petals — same geometry as design/brand/app-mark.svg.
+const PETALS: ReadonlyArray<readonly [number, number]> = [
+  [8, 1],
+  [80, 0.9],
+  [152, 0.8],
+  [224, 0.8],
+  [296, 0.9],
+];
+
+const petalPath = (length: number, width: number) =>
+  `M0 0C${-width * 0.9} ${-length * 0.25} ${-width * 0.7} ${-length * 0.72} 0 ${-length}C${width * 0.7} ${-length * 0.72} ${width * 0.9} ${-length * 0.25} 0 0Z`;
+
+// Vanilla orchid line mark (currentColor). Replace with your own logo — see BRANDING.md.
 export function AppMark({ className, compact = false }: AppMarkProps) {
-  if (compact) {
-    return (
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        className={cn('h-4 w-4', className)}
-        aria-hidden="true"
-      >
-        <rect
-          x="3"
-          y="5"
-          width="26"
-          height="22"
-          rx="5"
-          fill="currentColor"
-          opacity="0.9"
-        />
-        <rect x="3" y="5" width="9" height="22" fill="#000" opacity="0.25" />
-        <rect
-          x="14.5"
-          y="9"
-          width="11"
-          height="3"
-          rx="1.5"
-          fill="#000"
-          opacity="0.35"
-        />
-        <rect
-          x="14.5"
-          y="14"
-          width="8"
-          height="3"
-          rx="1.5"
-          fill="#000"
-          opacity="0.35"
-        />
-      </svg>
-    );
-  }
+  const size = compact ? 32 : 64;
+  const length = compact ? 13.5 : 27;
+  const width = compact ? 4.6 : 8;
   return (
     <svg
-      viewBox="0 0 64 64"
+      viewBox={`0 0 ${size} ${size}`}
       fill="none"
-      className={cn('h-8 w-8', className)}
+      className={cn(compact ? 'h-4 w-4' : 'h-8 w-8', className)}
       aria-hidden="true"
     >
-      <rect
-        x="6"
-        y="10"
-        width="52"
-        height="44"
-        rx="10"
-        fill="currentColor"
-        opacity="0.9"
-      />
-      <rect x="6" y="10" width="18" height="44" fill="#000" opacity="0.25" />
-      <rect
-        x="29"
-        y="18"
-        width="22"
-        height="6"
-        rx="3"
-        fill="#000"
-        opacity="0.35"
-      />
-      <rect
-        x="29"
-        y="28"
-        width="16"
-        height="6"
-        rx="3"
-        fill="#000"
-        opacity="0.35"
-      />
-      <rect
-        x="29"
-        y="38"
-        width="19"
-        height="6"
-        rx="3"
-        fill="#000"
-        opacity="0.35"
-      />
+      <g transform={`translate(${size / 2} ${size * 0.547})`}>
+        {PETALS.map(([rotation, k]) => (
+          <path
+            key={rotation}
+            transform={`rotate(${rotation})`}
+            d={petalPath(length * k, width)}
+            stroke="currentColor"
+            strokeWidth={compact ? 2.4 : 2.6}
+            strokeLinejoin="round"
+          />
+        ))}
+        <circle r={compact ? 2.6 : 5} fill="currentColor" />
+      </g>
     </svg>
   );
 }

@@ -7,6 +7,7 @@ import {
   Square,
   X,
   PanelLeft,
+  Palette,
 } from 'lucide-react';
 import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
@@ -147,6 +148,13 @@ export function TopMenuBar() {
           >
             <PanelLeft className="h-3.5 w-3.5" />
             <span>{t('topMenu.toggleSidebar')}</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => navigate('/design')}
+            className="gap-2 cursor-pointer text-[11px]"
+          >
+            <Palette className="h-3.5 w-3.5" />
+            <span>{t('design.title')}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => navigate('/settings')}
