@@ -78,7 +78,7 @@ export function TopMenuBar() {
   return (
     <div
       data-tauri-drag-region
-      className="h-10 shrink-0 flex items-center gap-1 px-2 bg-card/60 border-b border-border select-none"
+      className="h-10 shrink-0 flex items-center gap-1 px-2 bg-titlebar border-b border-border select-none"
     >
       <div className="flex items-center gap-1.5 pr-2">
         <AppMark compact className="h-4 w-4 text-brand" />
@@ -92,7 +92,7 @@ export function TopMenuBar() {
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 px-2 text-[11px] text-muted-foreground hover:text-foreground"
+            className="h-7 px-2 text-[11px] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.08]"
           >
             {t('topMenu.file')}
           </Button>
@@ -136,7 +136,7 @@ export function TopMenuBar() {
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 px-2 text-[11px] text-muted-foreground hover:text-foreground"
+            className="h-7 px-2 text-[11px] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.08]"
           >
             {t('topMenu.view')}
           </Button>
@@ -198,7 +198,7 @@ export function TopMenuBar() {
         size="icon"
         onClick={() => navigate('/settings')}
         title={t('topMenu.settings')}
-        className="h-7 w-7 text-muted-foreground hover:text-foreground"
+        className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-foreground/[0.08]"
       >
         <Settings className="h-4 w-4" />
       </Button>
@@ -209,7 +209,7 @@ export function TopMenuBar() {
           size="icon"
           onClick={() => void win()?.minimize()}
           title={t('topMenu.minimize')}
-          className="h-7 w-8 rounded-none text-muted-foreground hover:text-foreground"
+          className="h-7 w-8 rounded-none text-muted-foreground hover:text-foreground hover:bg-foreground/[0.08]"
         >
           <Minus className="h-3.5 w-3.5" />
         </Button>
@@ -218,7 +218,7 @@ export function TopMenuBar() {
           size="icon"
           onClick={() => void win()?.toggleMaximize()}
           title={t('topMenu.maximize')}
-          className="h-7 w-8 rounded-none text-muted-foreground hover:text-foreground"
+          className="h-7 w-8 rounded-none text-muted-foreground hover:text-foreground hover:bg-foreground/[0.08]"
         >
           <Square className="h-3 w-3" />
         </Button>

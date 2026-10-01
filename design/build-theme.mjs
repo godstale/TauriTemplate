@@ -102,6 +102,10 @@ for (const theme of ['dark', 'light']) {
     check(`${k}-foreground on ${k}`, t[`${k}-foreground`], t[k]);
   }
   check('code-foreground on code', t['code-foreground'], t.code);
+  for (const layer of ['titlebar', 'activitybar', 'panel', 'tabbar', 'editor']) {
+    check(`foreground on ${layer}`, t.foreground, t[layer]);
+    check(`muted-foreground on ${layer}`, t['muted-foreground'], t[layer]);
+  }
   console.log(`\n[${theme}]\n${rows.join('\n')}`);
 }
 console.log(

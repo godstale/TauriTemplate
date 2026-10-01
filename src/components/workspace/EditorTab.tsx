@@ -147,7 +147,7 @@ const darkEditorTheme = EditorView.theme({
   '&': {
     height: '100%',
     color: '#EDEDED',
-    backgroundColor: '#0A0A0A',
+    backgroundColor: 'hsl(var(--editor))',
     fontSize: 'var(--editor-font-size, 13px)',
   },
   '.cm-content': {
@@ -178,7 +178,7 @@ const darkEditorTheme = EditorView.theme({
     borderTop: '1px solid #2A2A2A',
   },
   '.cm-gutters': {
-    backgroundColor: '#0A0A0A',
+    backgroundColor: 'hsl(var(--editor))',
     color: '#8F8F8F',
     borderRight: '1px solid #2A2A2A',
     minWidth: '38px',
@@ -459,9 +459,9 @@ export function EditorTab({ tab }: EditorTabProps) {
   const charCount = content.length;
 
   return (
-    <div className="flex flex-col h-full w-full bg-background min-h-0 select-none">
+    <div className="flex flex-col h-full w-full bg-editor min-h-0 select-none">
       {/* Visual Editor Toolbar */}
-      <div className="h-9 shrink-0 flex items-center justify-between px-3 border-b border-border bg-card/60 text-xs">
+      <div className="h-9 shrink-0 flex items-center justify-between px-3 border-b border-border bg-tabbar text-xs">
         {/* Left: File Icon & Name */}
         <div className="flex items-center gap-2 min-w-0">
           <fileIconSpec.Icon
@@ -702,7 +702,7 @@ export function EditorTab({ tab }: EditorTabProps) {
         )}
 
         {/* Footer Status Bar */}
-        <div className="h-6 shrink-0 flex items-center justify-between px-3 border-t border-border/60 bg-card/70 text-[11px] font-mono text-muted-foreground select-none">
+        <div className="h-6 shrink-0 flex items-center justify-between px-3 border-t border-border/60 bg-tabbar text-[11px] font-mono text-muted-foreground select-none">
           <div className="flex items-center gap-3">
             <span>
               Ln {cursorPos.line}, Col {cursorPos.col}

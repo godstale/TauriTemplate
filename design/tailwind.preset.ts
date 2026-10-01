@@ -80,6 +80,12 @@ const themePreset = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        // Workspace shell layers: darker toward the top/left edge of the window.
+        titlebar: 'hsl(var(--titlebar))',
+        activitybar: 'hsl(var(--activitybar))',
+        panel: 'hsl(var(--panel))',
+        tabbar: 'hsl(var(--tabbar))',
+        editor: 'hsl(var(--editor))',
       },
       fontFamily: {
         sans: [

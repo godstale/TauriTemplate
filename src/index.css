@@ -56,6 +56,11 @@
     --sidebar-accent-foreground: 0 0% 92.9%; /* #EDEDED */
     --sidebar-border: 0 0% 16.5%; /* #2A2A2A */
     --sidebar-ring: 28.1 89.5% 62.5%; /* #F59A4A */
+    --titlebar: 0 0% 2%; /* #050505 */
+    --activitybar: 0 0% 3.1%; /* #080808 */
+    --panel: 0 0% 4.7%; /* #0C0C0C */
+    --tabbar: 0 0% 6.3%; /* #101010 */
+    --editor: 0 0% 7.8%; /* #141414 */
     --brand: 38.8 43.6% 92.4%; /* #F4EEE3 */
     --radius: 0.75rem;
     color-scheme: dark;
@@ -105,6 +110,11 @@
     --sidebar-accent-foreground: 0 0% 6.7%; /* #111111 */
     --sidebar-border: 0 0% 87.8%; /* #E0E0E0 */
     --sidebar-ring: 148.7 65.7% 27.5%; /* #187444 */
+    --titlebar: 0 0% 91%; /* #E8E8E8 */
+    --activitybar: 0 0% 92.9%; /* #EDEDED */
+    --panel: 0 0% 94.9%; /* #F2F2F2 */
+    --tabbar: 0 0% 97.3%; /* #F8F8F8 */
+    --editor: 0 0% 100%; /* #FFFFFF */
     --brand: 4.7 55.2% 22.7%; /* #5A1F1A */
     color-scheme: light;
   }
