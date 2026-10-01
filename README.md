@@ -1,6 +1,7 @@
-<p align="center"><img src="./design/brand/app-banner.svg" alt="WorkspaceTemplate — folder-based Tauri desktop workspace shell" width="100%" /></p>
+<p align="center"><img src="./design/brand/app-banner.jpg" alt="VanillaTemplate — folder-based Tauri desktop workspace shell" width="100%" /></p>
+<p align="right"><sub>사진: <a href="https://unsplash.com/ko/%EC%82%AC%EC%A7%84/%ED%9D%91%EB%B0%B1-%EC%A7%81%EC%84%A0-GA6WtJ7DtSo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>의 <a href="https://unsplash.com/ko/@molnj?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jocelyn Morales</a></sub></p>
 
-# WorkspaceTemplate
+# VanillaTemplate
 
 폴더 기반 데스크탑 앱을 **빠르고 손쉽게 시작**하기 위한 Tauri 2 + React 19 +
 TypeScript 스타터 템플릿입니다. 특정 프로젝트의 도메인 로직은 포함하지 않고,
@@ -57,7 +58,7 @@ pnpm tauri build
 
 1. `BRANDING.md`의 교체 체크리스트 수행 (앱 이름·로고·아이콘·식별자).
 2. `src/lib/brand.ts`의 `APP_NAME` 변경.
-3. `pnpm tauri icon design/brand/app-icon.svg`로 데스크탑 아이콘 생성.
+3. `pnpm tauri icon design/brand/app-icon.png`로 데스크탑 아이콘 생성.
 4. 예제 도메인이 필요 없으면 `Docs/Extension-Guide.md` §8 순서대로 제거.
 5. 도메인 설계 문서를 새로 작성하고 `Docs/Architecture.md`는 템플릿 원본으로 유지.
 

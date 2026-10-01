@@ -1,4 +1,4 @@
-// Tailwind v3 preset for the "Midnight Rampart" theme.
+// Tailwind v3 preset for the "Vanilla" theme.
 // Pair it with design/theme.css (the CSS variables) ??see DESIGN.md §6 for porting steps.
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
@@ -80,6 +80,12 @@ const themePreset = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        // Workspace shell layers: darker toward the top/left edge of the window.
+        titlebar: 'hsl(var(--titlebar))',
+        activitybar: 'hsl(var(--activitybar))',
+        panel: 'hsl(var(--panel))',
+        tabbar: 'hsl(var(--tabbar))',
+        editor: 'hsl(var(--editor))',
       },
       fontFamily: {
         sans: [
@@ -93,6 +99,7 @@ const themePreset = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        card: '1.25rem',
       },
     },
   },

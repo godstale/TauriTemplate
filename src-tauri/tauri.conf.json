@@ -1,18 +1,18 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "WorkspaceTemplate",
+  "productName": "VanillaTemplate",
   "version": "0.1.0",
   "identifier": "com.example.workspace-template",
   "build": {
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:14200",
+    "devUrl": "http://127.0.0.1:14200",
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build"
   },
   "app": {
     "windows": [
       {
-        "title": "WorkspaceTemplate",
+        "title": "VanillaTemplate",
         "width": 1280,
         "height": 800,
         "resizable": true,

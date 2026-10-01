@@ -1,4 +1,7 @@
+import { designKo } from './design';
+
 const ko = {
+  ...designKo,
   'languageSelect.title': '언어 선택',
   'languageSelect.description': '앱에서 사용할 언어를 선택하세요.',
   'languageSelect.koLabel': '한국어',
