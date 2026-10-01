@@ -2,9 +2,9 @@ import { AppMark } from '@/components/brand/AppMark';
 import { Card, Well } from '@/components/ui/card';
 import { APP_NAME } from '@/lib/brand';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import iconRose from '../../../design/brand/app-icon.svg';
-import iconDark from '../../../design/brand/app-icon-dark.svg';
-import iconLight from '../../../design/brand/app-icon-light.svg';
+import iconMaster from '../../../design/brand/app-icon.png';
+import iconDark from '../../../design/brand/app-icon-dark.png';
+import iconLight from '../../../design/brand/app-icon-light.png';
 import banner from '../../../design/brand/app-banner.svg';
 import pattern from '../../../design/brand/app-pattern.svg';
 import { PageHeader, Section } from './DesignSection';
@@ -14,7 +14,7 @@ const SIZES = [256, 128, 64, 48, 32, 16];
 export function BrandPage() {
   const { t } = useLanguage();
   const variants = [
-    { src: iconRose, labelKey: 'design.brand.variantRose' },
+    { src: iconMaster, labelKey: 'design.brand.variantMaster' },
     { src: iconDark, labelKey: 'design.brand.variantDark' },
     { src: iconLight, labelKey: 'design.brand.variantLight' },
   ];
@@ -31,7 +31,7 @@ export function BrandPage() {
         <Well className="flex flex-wrap items-end gap-8">
           {SIZES.map((size) => (
             <figure key={size} className="flex flex-col items-center gap-2">
-              <img src={iconRose} width={size} height={size} alt="" />
+              <img src={iconMaster} width={size} height={size} alt="" />
               <figcaption className="font-mono text-xs text-muted-foreground">
                 {size}px
               </figcaption>
@@ -55,12 +55,12 @@ export function BrandPage() {
       </Section>
 
       <Section label={t('design.brand.mark')}>
-        <Card className="flex flex-wrap items-center gap-10 text-brand">
+        <Card className="flex flex-wrap items-center gap-10">
           <AppMark className="h-24 w-24" />
           <AppMark className="h-12 w-12" />
           <AppMark compact className="h-6 w-6" />
           <span className="flex items-center gap-2 text-foreground">
-            <AppMark className="h-6 w-6 text-brand" />
+            <AppMark className="h-7 w-7" />
             <strong className="text-lg tracking-tight">{APP_NAME}</strong>
           </span>
         </Card>

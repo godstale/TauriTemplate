@@ -15,15 +15,15 @@ export const designKo = {
 
   'design.brand.title': '아이콘과 이미지',
   'design.brand.lead':
-    '분홍빛 바탕 위의 바닐라 난초. 평면 색, 깊은 갈색 외곽선, 따뜻한 중심 하나로 구성합니다.',
+    '두 줄기 바닐라 빈 위에 핀 크림색 난초. 따뜻한 갈색 잉크 선과 부드러운 평면 색으로 그립니다.',
   'design.brand.sizes': '앱 아이콘 — 원본 하나, 모든 크기',
   'design.brand.sizesHint':
-    '`pnpm tauri icon design/brand/app-icon.svg`로 Windows·macOS·Linux·Android·iOS용 아이콘을 한 번에 생성합니다.',
+    '`pnpm tauri icon design/brand/app-icon.png`로 Windows·macOS·Linux·Android·iOS용 아이콘을 한 번에 생성합니다.',
   'design.brand.variants': '변형',
-  'design.brand.variantRose': '기본 — 로즈',
-  'design.brand.variantDark': '다크 — 크림 선화 + 주황',
-  'design.brand.variantLight': '라이트 — 잉크 선화 + 녹색',
-  'design.brand.mark': '선화 마크 (currentColor)',
+  'design.brand.variantMaster': '기본 — 바닐라 크림',
+  'design.brand.variantDark': '다크 — 그래파이트 타일',
+  'design.brand.variantLight': '라이트 — 흰 타일',
+  'design.brand.mark': '앱 내 로고',
   'design.brand.banner': '배너와 패턴',
   'design.brand.patternHint':
     '빈 화면·스플래시 배경용 패턴입니다. 위에 글자를 직접 올리지 말고 흰 카드를 얹으세요.',
@@ -183,15 +183,15 @@ export const designEn: typeof designKo = {
 
   'design.brand.title': 'Icon & imagery',
   'design.brand.lead':
-    'A hand-drawn vanilla orchid on dusty rose. Flat fills, deep pod-brown outlines, one warm centre.',
+    'A cream vanilla orchid resting on two cured pods, drawn in warm brown ink with soft flat fills.',
   'design.brand.sizes': 'App icon — one master, every size',
   'design.brand.sizesHint':
-    '`pnpm tauri icon design/brand/app-icon.svg` generates the Windows, macOS, Linux, Android and iOS icon sets in one go.',
+    '`pnpm tauri icon design/brand/app-icon.png` generates the Windows, macOS, Linux, Android and iOS icon sets in one go.',
   'design.brand.variants': 'Variants',
-  'design.brand.variantRose': 'Master — rose',
-  'design.brand.variantDark': 'Dark — cream line art + orange',
-  'design.brand.variantLight': 'Light — ink line art + green',
-  'design.brand.mark': 'Line mark (currentColor)',
+  'design.brand.variantMaster': 'Master — vanilla cream',
+  'design.brand.variantDark': 'Dark — graphite tile',
+  'design.brand.variantLight': 'Light — white tile',
+  'design.brand.mark': 'In-app logo',
   'design.brand.banner': 'Banner & pattern',
   'design.brand.patternHint':
     'Pattern for empty states and splash backgrounds. Never put text directly on it — lay a white card on top.',
